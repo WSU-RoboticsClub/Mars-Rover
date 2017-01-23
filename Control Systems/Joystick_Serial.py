@@ -3,8 +3,8 @@ import time
 
 new_str = ""
 old_str = ""
-ser = serial.Serial ('/dev/ttyUSB1', 9600) # Pro-Mini w/integrated FTDI
-# ser = serial.Serial ('/dev/ttyACM0', 9600) # Official Arduino Uno
+#ser = serial.Serial ('/dev/ttyUSB1', 9600) # Pro-Mini w/integrated FTDI
+ser = serial.Serial ('/dev/ttyACM0', 9600) # Official Arduino Uno
 
 while True:
 
@@ -18,6 +18,4 @@ while True:
 
         old_str = new_str
         time.sleep(.01)
-
-### EOF
 
