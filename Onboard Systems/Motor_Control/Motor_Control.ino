@@ -97,10 +97,17 @@ void motorControl_Servo()
   //  increase the right side by half of our difference  
   double theTurn = ((hPos - 500) / 2);
   
-  //Calculate our left and right pulse widths using all of our available data
-  //  pulse width needs to be complementary for each motor as they are horizontally opposed  
-  double LPW = 1000 + vPos + theTurn;
-  double RPW = 2000 - vPos + theTurn;
+  // Calculate our left and right pulse widths using all of our available data
+  // pulse width needs to be complementary for each motor as they are horizontally opposed 
+  // Since we are using servo.write, we need to translate the PWM to degrees
+  // PWM values are from 1000-2000
+  // servo angles are from 0-180
+  // so, take the Pulse Width value (LPW or RPW), subtract 1000, 
+  // divide that number by a factor of 5.5 (1000/180)
+  // and this should be the correct angle to correspond to our desired motor speed and direction
+  
+  double LPW = ((1000 + vPos + theTurn)-1000)/5.5;
+  double RPW = ((2000 - vPos + theTurn)-1000)/5.5;
 
   //Assign the pulsewidth values to the motors
   front_right.write(RPW);
